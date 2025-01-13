@@ -1,7 +1,9 @@
+import 'package:booking_app_frontend/common/constants/app_colors.dart';
+import 'package:booking_app_frontend/common/constants/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+class SplashPage extends StatelessWidget {
+  const SplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,19 +14,12 @@ class SplashScreen extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFF63B5AF),
-              Color(0xFF438883),
-            ],
+            colors: AppColors.greenGradient,
           ),
         ),
-        child: const Text(
-          "Kazero",
-          style: TextStyle(
-            fontSize: 50.0,
-            fontWeight: FontWeight.w700,
-            color: Colors.white,
-          ),
+        child: Text(
+          "kazero",
+          style: AppTextStyles.bigText50.copyWith(color: AppColors.white),
         ),
       ),
     );

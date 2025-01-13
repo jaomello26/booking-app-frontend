@@ -1,4 +1,4 @@
-import 'package:booking_app_frontend/features/splash/splash_screen.dart';
+import 'package:booking_app_frontend/features/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -6,6 +6,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: SplashScreen());
+    return const MaterialApp(home: SplashPage());
   }
 }
