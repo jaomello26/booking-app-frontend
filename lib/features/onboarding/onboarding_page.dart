@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
+
 import 'package:booking_app_frontend/common/constants/app_colors.dart';
 import 'package:booking_app_frontend/common/constants/app_text_styles.dart';
+import 'package:booking_app_frontend/common/widgets/multi_text_button.dart';
 import 'package:booking_app_frontend/common/widgets/primary_button.dart';
-import 'package:flutter/material.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -15,17 +17,19 @@ class OnboardingPage extends StatelessWidget {
           const SizedBox(height: 48.0),
           Expanded(
             child: Image.asset(
-              'assets/images/man.png',
+              'assets/images/onboarding_image.png',
             ),
           ),
           Text(
             'Spend Smarter',
+            textAlign: TextAlign.center,
             style: AppTextStyles.mediumText36.copyWith(
               color: AppColors.greenOne,
             ),
           ),
           Text(
             'Save More',
+            textAlign: TextAlign.center,
             style: AppTextStyles.mediumText36.copyWith(
               color: AppColors.greenOne,
             ),
@@ -42,13 +46,24 @@ class OnboardingPage extends StatelessWidget {
               onPressed: () {},
             ),
           ),
-          Text(
-            'Already have account? Sign In',
-            style: AppTextStyles.smallText.copyWith(
-              color: AppColors.grey,
-            ),
+          MultiTextButton(
+            onPressed: () {},
+            children: [
+              Text(
+                'Already have account? ',
+                style: AppTextStyles.smallText.copyWith(
+                  color: AppColors.grey,
+                ),
+              ),
+              Text(
+                'Sign In ',
+                style: AppTextStyles.smallText.copyWith(
+                  color: AppColors.greenOne,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 24.0)
+          const SizedBox(height: 24.0),
         ],
       ),
     );
