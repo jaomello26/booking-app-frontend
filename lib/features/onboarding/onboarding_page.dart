@@ -1,3 +1,4 @@
+import 'package:booking_app_frontend/common/constants/routes.dart';
 import 'package:flutter/material.dart';
 
 import 'package:booking_app_frontend/common/constants/app_colors.dart';
@@ -43,7 +44,12 @@ class OnboardingPage extends StatelessWidget {
             ),
             child: PrimaryButton(
               text: 'Get Started',
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  NamedRoute.signUp,
+                );
+              },
             ),
           ),
           MultiTextButton(
