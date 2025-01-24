@@ -1,4 +1,5 @@
 import 'package:booking_app_frontend/common/constants/routes.dart';
+import 'package:booking_app_frontend/common/themes/default_theme.dart';
 import 'package:booking_app_frontend/features/sign_in/sign_in_page.dart';
 import 'package:booking_app_frontend/features/splash/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: CustomTheme().defaultTheme,
       initialRoute: NamedRoute.splash,
       routes: {
         NamedRoute.initial: (context) => const OnboardingPage(),
