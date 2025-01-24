@@ -53,7 +53,12 @@ class OnboardingPage extends StatelessWidget {
             ),
           ),
           MultiTextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                NamedRoute.signIn,
+              );
+            },
             children: [
               Text(
                 'Already have account? ',

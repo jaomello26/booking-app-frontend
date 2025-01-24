@@ -3,34 +3,31 @@ import 'package:flutter/material.dart';
 
 import 'package:booking_app_frontend/common/constants/app_colors.dart';
 import 'package:booking_app_frontend/common/constants/app_text_styles.dart';
-import 'package:booking_app_frontend/common/utils/uppercase_text_formatter.dart';
 import 'package:booking_app_frontend/common/utils/validator.dart';
 import 'package:booking_app_frontend/common/widgets/custom_circular_progress_indicator.dart';
 import 'package:booking_app_frontend/common/widgets/custom_text_form_field.dart';
 import 'package:booking_app_frontend/common/widgets/multi_text_button.dart';
 import 'package:booking_app_frontend/common/widgets/password_form_field.dart';
 import 'package:booking_app_frontend/common/widgets/primary_button.dart';
-import 'package:booking_app_frontend/features/sign_up/sign_up_controller.dart';
-import 'package:booking_app_frontend/features/sign_up/sign_up_state.dart';
+import 'package:booking_app_frontend/features/sign_in/sign_in_controller.dart';
+import 'package:booking_app_frontend/features/sign_in/sign_in_state.dart';
 import 'package:booking_app_frontend/services/mock_auth_service.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignInPageState extends State<SignInPage> {
   final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _controller = SignUpController(MockAuthService());
+  final _controller = SignInController(MockAuthService());
 
   @override
   void dispose() {
-    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -40,14 +37,14 @@ class _SignUpPageState extends State<SignUpPage> {
   void initState() {
     super.initState();
     _controller.addListener(() {
-      if (_controller.state is SignUpStateLoading) {
+      if (_controller.state is SignInStateLoading) {
         showDialog(
           context: context,
           builder: (context) => const CustomCircularProgressIndicator(),
         );
       }
 
-      if (_controller.state is SignUpStateSuccess) {
+      if (_controller.state is SignInStateSuccess) {
         Navigator.pop(context);
         Navigator.push(
           context,
@@ -61,8 +58,8 @@ class _SignUpPageState extends State<SignUpPage> {
         );
       }
 
-      if (_controller.state is SignUpStateError) {
-        final error = _controller.state as SignUpStateError;
+      if (_controller.state is SignInStateError) {
+        final error = _controller.state as SignInStateError;
         Navigator.pop(context);
 
         ScaffoldMessenger.of(context).showSnackBar(
@@ -82,35 +79,19 @@ class _SignUpPageState extends State<SignUpPage> {
       body: ListView(
         children: [
           Text(
-            'Spend Smarter',
-            textAlign: TextAlign.center,
-            style: AppTextStyles.mediumText36.copyWith(
-              color: AppColors.greenOne,
-            ),
-          ),
-          Text(
-            'Save More',
+            'Welcome Back!',
             textAlign: TextAlign.center,
             style: AppTextStyles.mediumText36.copyWith(
               color: AppColors.greenOne,
             ),
           ),
           Image.asset(
-            'assets/images/sign_up_image.png',
+            'assets/images/sign_in_image.png',
           ),
           Form(
             key: _formKey,
             child: Column(
               children: [
-                CustomTextFormField(
-                  controller: _nameController,
-                  labelText: "your name",
-                  hintText: "JOHN DOE",
-                  inputFormatters: [
-                    UpperCaseTextInputFormatter(),
-                  ],
-                  validator: Validator.validateName,
-                ),
                 CustomTextFormField(
                   controller: _emailController,
                   labelText: "your email",
@@ -122,15 +103,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   labelText: "choose your password",
                   hintText: "*********",
                   validator: Validator.validatePassword,
-                  helperText: "Must have at least 8 characters, 1 capital letter and 1 number.",
-                ),
-                PasswordFormField(
-                  labelText: "confirm your password",
-                  hintText: "*********",
-                  validator: (value) => Validator.validateConfirmPassword(
-                    _passwordController.text,
-                    value,
-                  ),
                 ),
               ],
             ),
@@ -143,13 +115,12 @@ class _SignUpPageState extends State<SignUpPage> {
               bottom: 4.0,
             ),
             child: PrimaryButton(
-              text: 'Sign Up',
+              text: 'Sign In',
               onPressed: () {
                 final valid = _formKey.currentState != null && _formKey.currentState!.validate();
 
                 if (valid) {
-                  _controller.doSignUp(
-                    name: _nameController.text,
+                  _controller.doSignIn(
                     email: _emailController.text,
                     password: _passwordController.text,
                   );
@@ -161,18 +132,18 @@ class _SignUpPageState extends State<SignUpPage> {
             onPressed: () {
               Navigator.pushReplacementNamed(
                 context,
-                NamedRoute.signIn,
+                NamedRoute.signUp,
               );
             },
             children: [
               Text(
-                'Already have account? ',
+                'Don`t have account? ',
                 style: AppTextStyles.smallText.copyWith(
                   color: AppColors.grey,
                 ),
               ),
               Text(
-                'Sign In',
+                'Sign Up',
                 style: AppTextStyles.smallText.copyWith(
                   color: AppColors.greenOne,
                 ),

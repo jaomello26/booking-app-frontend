@@ -1,4 +1,5 @@
 import 'package:booking_app_frontend/common/constants/routes.dart';
+import 'package:booking_app_frontend/features/sign_in/sign_in_page.dart';
 import 'package:booking_app_frontend/features/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ class App extends StatelessWidget {
         NamedRoute.initial: (context) => const OnboardingPage(),
         NamedRoute.splash: (context) => const SplashPage(),
         NamedRoute.signUp: (context) => const SignUpPage(),
+        NamedRoute.signIn: (context) => const SignInPage(),
       },
     );
   }
